@@ -1,0 +1,13 @@
+*~
+*#
+.DS_Store
+.idea
+/node_modules
+npm-debug.log
+
+/.vscode/*
+!/.vscode/settings.json
+!/.vscode/extensions.json
+
+*.sublime-*
+.cache/
