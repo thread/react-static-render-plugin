@@ -36,7 +36,7 @@ const logger = {
   error: withLoggerPrefix(console.error)
 };
 
-const mandatoryFields = ["rootId", "pages"];
+const mandatoryFields = ["pages"];
 
 const genStaticRenderRouter = (React, StaticRouter, path, locals) => {
   const StaticRenderRouter = props =>
@@ -76,6 +76,7 @@ export default class StaticRenderPlugin {
       const { default: staticBuildVars } = require(tmpFile.name);
       const {
         routerToComponent,
+        rootId,
         React,
         ReactDOM,
         StaticRouter
@@ -107,7 +108,7 @@ export default class StaticRenderPlugin {
                 if (!markup || !markup.toString()) {
                   reject(`Outputted markup for ${pathName} was blank!`);
                 }
-                return `<div id="${this.options.rootId}">${markup}</div>`;
+                return `<div id="${rootId}">${markup}</div>`;
               })
               .then(finalMarkup => {
                 const markupHash = hash(finalMarkup);

@@ -1,6 +1,6 @@
 import { Router } from "react-router-dom";
 
-export const render = (routerToComponent, targetId) => {
+export const render = (routerToComponent, rootId) => {
   // import these here to make sure that we get the same instance used in the
   // build of the app, rather than in the static render flow!
   // otherwise we have 2 instances of React, and contexts etc. don't match up
@@ -14,14 +14,15 @@ export const render = (routerToComponent, targetId) => {
       routerToComponent,
       React,
       ReactDOM,
-      StaticRouter
+      StaticRouter,
+      rootId
     };
   } else {
     const ReactDOM = require("react-dom");
 
     const component = routerToComponent(Router);
     return Promise.resolve(component).then(component =>
-      ReactDOM.hydrate(component, document.getElementById(targetId))
+      ReactDOM.hydrate(component, document.getElementById(rootId))
     );
   }
 };
