@@ -32,7 +32,12 @@ Change your React app entry from:
 import React from "react";
 import ReactDOM from "react-dom";
 
-ReactDOM.render(<MyApp />, document.getElementById("app"));
+ReactDOM.render(
+  <Router>
+    <MyApp />
+  </Router>,
+  document.getElementById("app")
+);
 ```
 
 to:
@@ -41,7 +46,14 @@ to:
 import React from "react";
 import { render } from "@teamthread/react-static-render-plugin";
 
-render(<MyApp />, "app");
+render(
+  Router => (
+    <Router>
+      <MyApp />
+    </Router>
+  ),
+  "app"
+);
 ```
 
 and you're done!
