@@ -1,0 +1,30 @@
+{
+  "name": "@teamthread/react-static-render-plugin",
+  "version": "0.0.0",
+  "description": "A webpack plugin to make it easy to statically render your React pages",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thread/react-static-render-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "react",
+    "statically render",
+    "static render",
+    "server-side render",
+    "ssr"
+  ],
+  "author": "Thread",
+  "private": false,
+  "license": "MIT",
+  "dependencies": {
+    "tmp": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^15 || ^16",
+    "react-dom": "^15 || ^16",
+    "react-router-dom": "^4 || ^5",
+    "webpack": "^1 || ^2 || ^3 || ^4"
+  }
+}
