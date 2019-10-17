@@ -6,13 +6,6 @@ import tmp from "tmp";
 
 const writeFile = promisify(fs.writeFile);
 
-/*
- * This plugin is (and should be kept) entirely independent to Thread specifically
- * Ideally it can eventually be its own plugin living on GitHub + npm...
- * but just for the moment, we're keeping it in styleme to let it iterate quickly
- * while it's still early days
- */
-
 // lifted from https://github.com/darkskyapp/string-hash/blob/master/index.js
 function hash(str) {
   let hash = 5381;

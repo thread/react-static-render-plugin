@@ -31,6 +31,7 @@ Change your React app entry from:
 ```javascript
 import React from "react";
 import ReactDOM from "react-dom";
+import { Router } from "react-router-dom";
 
 ReactDOM.render(
   <Router>
@@ -44,9 +45,9 @@ to:
 
 ```javascript
 import React from "react";
-import { render } from "@teamthread/react-static-render-plugin";
+import { render } from "@teamthread/react-static-render-plugin/render";
 
-render(
+export default render(
   Router => (
     <Router>
       <MyApp />
@@ -83,7 +84,38 @@ module.exports = {
 
 You should now see a `index.html` and `signin.html` in your output! These HTML fragments can now be included in your server-side templates.
 
-## Options
+## App API
+
+### `render`
+
+`import { render } from "@teamthread/react-static-render-plugin";`
+
+The `render` method takes 2 arguments:
+
+- `routerToApp` - this should be a function that takes the `Router` component (dynamically passed in, since a different router is used at run-time vs. static-render time)
+- `id` - unlike `ReactDOM.render()` which has a second argument of a DOM element, the `StaticRenderPlugin` needs to know just the element's ID. This is because the plugin uses it to find the element in the page at run-time, but _also_ uses it to _generate_ the element, at static-render time.
+
+### `process.env.STATIC_RENDER`
+
+The `StaticRenderPlugin` sets an environment variable `process.env.STATIC_RENDER` for the static-render build. This means that you can hide certain parts of the app, specifically for the static render.
+
+For example:
+
+```jsx
+<section className="user-data">
+  <img
+    src={
+      process.env.STATIC_RENDER
+        ? // we don't know what user this is at static-render time, so we
+          // use a template at static-render time
+          templatePhoto
+        : photoOfUser
+    }
+  />
+</section>
+```
+
+## Plugin API
 
 Pass these into the constructor, as an object:
 
@@ -117,7 +149,7 @@ The `locals` object is optional, but lets you pass through variables to your app
 ```jsx
 <Route
   render={({ staticContext }) => (
-    <div>{`The meaning of life is ${staticContext.meaningOfLife}`}</div>
+    <div>The meaning of life is {staticContext.meaningOfLife}</div>
   )}
 />
 ```
