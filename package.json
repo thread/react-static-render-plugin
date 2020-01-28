@@ -1,6 +1,6 @@
 {
   "name": "@teamthread/react-static-render-plugin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A webpack plugin to make it easy to statically render your React pages",
   "main": "index.js",
   "repository": {

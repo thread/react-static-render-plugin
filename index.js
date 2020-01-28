@@ -119,9 +119,9 @@ export default class StaticRenderPlugin {
               })
               .catch(e => {
                 logger.error(
-                  `An error occurred while trying to statically render the route ${pathName}`,
-                  e
+                  `An error occurred while trying to statically render the route ${pathName}`
                 );
+                reject(e);
               });
           })
       );
